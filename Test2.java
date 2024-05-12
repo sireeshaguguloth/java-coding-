@@ -1,5 +1,8 @@
 package com.siri.thread.examples;
-class A {
+//Thread can be prepared in 2 ways:
+//1.Using Thread class (Below Program)
+//2.Using Runnable interface
+class C1 extends Thread {
 	void m1() {
 		System.out.println("m1 entry");
 		for (int i = 1; i <= 5; i++) {
@@ -8,8 +11,12 @@ class A {
 		}
 		System.out.println("m1 exit");
 	}
+	@Override
+	public void run() {
+		m1();
+	}
 }
-class B {
+class C2 extends Thread {
 	void m2() {
 		System.out.println("m2 entry");
 		for (int i = 6; i <= 10; i++) {
@@ -18,21 +25,20 @@ class B {
 		}
 		System.out.println("m2 exit");
 	}
+	@Override
+	public void run() {
+		m2();
+	}
 }
 
-public class Test1 {
-		public static void main(String[] args) {
-			long startTime = System.currentTimeMillis();
-			System.out.println("main entry");
-			A ob1=new A();
-			ob1.m1();
-			B ob2=new B();
-			ob2.m2();
-			System.out.println("main exit");
-			long endTime = System.currentTimeMillis();
-			long totalTime=(endTime-startTime);
-			System.out.println("Total Time:"+totalTime);
+public class Test2 {
+
+	public static void main(String[] args) {
+		C1 ob1=new C1();	//Created a Thread-0
+		ob1.start();		//start() will calls the run()
+		C2 ob2=new C2();	//Created a Thread-1
+		ob2.start();		//start() will calls the run()
+
 	}
-	
 
 }
