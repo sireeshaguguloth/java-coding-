@@ -1,38 +1,39 @@
-package com.siri.thread.examples;
-class A {
-	void m1() {
-		System.out.println("m1 entry");
-		for (int i = 1; i <= 5; i++) {
-			System.out.println("i=" + i);
-			try {Thread.sleep(1000);}catch(Exception e) {e.printStackTrace();}
-		}
-		System.out.println("m1 exit");
+package com.siri.inheritance.introduction;
+class ClassOne{
+	protected void m1() {
+		System.out.println("business logic1");
 	}
 }
-class B {
-	void m2() {
-		System.out.println("m2 entry");
-		for (int i = 6; i <= 10; i++) {
-			System.out.println("i=" + i);
-			try {Thread.sleep(1000);}catch(Exception e) {e.printStackTrace();}
-		}
-		System.out.println("m2 exit");
+	
+class ClassTwo extends ClassOne{
+	protected void m2() {
+		System.out.println("business logic2");
+	}
+}
+class ClassThree extends ClassTwo{
+	protected void m3() {
+		System.out.println("business logic3");
+	}
+}
+class ClassFour extends ClassTwo{
+	protected void m4() {
+		System.out.println("business logic4");
 	}
 }
 
+
 public class Test1 {
-		public static void main(String[] args) {
-			long startTime = System.currentTimeMillis();
-			System.out.println("main entry");
-			A ob1=new A();
-			ob1.m1();
-			B ob2=new B();
-			ob2.m2();
-			System.out.println("main exit");
-			long endTime = System.currentTimeMillis();
-			long totalTime=(endTime-startTime);
-			System.out.println("Total Time:"+totalTime);
-	}
+
+	public static void main(String[] args) {
+	ClassOne ob1=new ClassOne();
+	ob1.m1();
+	ClassTwo ob2=new ClassTwo();
+	ob2.m2();
+	ClassThree ob3=new ClassThree();
+	ob3.m3();
+	ClassFour ob4=new ClassFour();
+	ob4.m4();
 	
+	}
 
 }
